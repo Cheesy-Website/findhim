@@ -34,7 +34,7 @@
       </div>
 
       <style>
-        .dess {
+        .alex {
           min-width: 320px;
           max-width: 100%;
           min-height: 320px;
@@ -44,7 +44,7 @@
           cursor: pointer;
         }
 
-        .dess img {
+        .alex img {
           position: absolute;
           height: 100%;
           width: 100%;
@@ -56,18 +56,18 @@
       <audio id="audio" src="findhim.mp3" loop preload="auto"></audio>
 
       <script>
-        const dess = document.getElementById('alex');
+        const alex = document.getElementById('alex');
         const audio = document.getElementById('audio');
 
-        dess.addEventListener('click', () => {
-          if (!dess.classList.contains('playing')) {
+        alex.addEventListener('click', () => {
+          if (!alex.classList.contains('playing')) {
             audio.volume = 0.5;
             audio.play();
-            dess.classList.add('playing');
+            alex.classList.add('playing');
           } else {
             audio.pause();
             audio.currentTime = 0;
-            dess.classList.remove('playing');
+            alex.classList.remove('playing');
           }
         });
       </script>
