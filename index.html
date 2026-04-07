@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="robots" content="noindex" />
+    <title>*(It's a grey guitar.)</title>
+    <link rel="stylesheet" href="/extra.css" />
+
+    <style>
+      /* Center everything on screen */
+      html, body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+      }
+
+      #center {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <div id="center">
+        <div class="alex" id="alex">
+          <img src="/guitar.png" alt="Grey guitar" />
+        </div>
+      </div>
+
+      <style>
+        .dess {
+          min-width: 320px;
+          max-width: 100%;
+          min-height: 320px;
+          max-height: 100%;
+          position: relative;
+          color: black;
+          cursor: pointer;
+        }
+
+        .dess img {
+          position: absolute;
+          height: 100%;
+          width: 100%;
+          object-fit: contain;
+          image-rendering: pixelated;
+        }
+      </style>
+
+      <audio id="audio" src="/findhim.mp3" loop preload="auto"></audio>
+
+      <script>
+        const dess = document.getElementById('alex');
+        const audio = document.getElementById('audio');
+
+        dess.addEventListener('click', () => {
+          if (!dess.classList.contains('playing')) {
+            audio.volume = 0.5;
+            audio.play();
+            dess.classList.add('playing');
+          } else {
+            audio.pause();
+            audio.currentTime = 0;
+            dess.classList.remove('playing');
+          }
+        });
+      </script>
+    </main>
+  </body>
+</html>
