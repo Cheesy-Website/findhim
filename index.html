@@ -54,23 +54,44 @@
       </style>
 
       <audio id="audio" src="findhim.mp3" loop preload="auto"></audio>
+<script>
+  const alex = document.getElementById('alex');
 
-      <script>
-        const alex = document.getElementById('alex');
-        const audio = document.getElementById('audio');
+  const audio1 = new Audio('findhim.mp3');
+  const audio2 = new Audio('findhim.mp3');
 
-        alex.addEventListener('click', () => {
-          if (!alex.classList.contains('playing')) {
-            audio.volume = 0.5;
-            audio.play();
-            alex.classList.add('playing');
-          } else {
-            audio.pause();
-            audio.currentTime = 0;
-            alex.classList.remove('playing');
-          }
-        });
-      </script>
+  let current = audio1;
+  let next = audio2;
+
+  const overlapTime = 1; // seconds before end
+
+  function playLoop(audio, nextAudio) {
+    audio.volume = 0.5;
+    audio.play();
+
+    const check = setInterval(() => {
+      if (audio.duration && audio.currentTime >= audio.duration - overlapTime) {
+        clearInterval(check);
+
+        // start next audio slightly before this ends
+        playLoop(nextAudio, audio);
+      }
+    }, 50);
+  }
+
+  alex.addEventListener('click', () => {
+    if (!alex.classList.contains('playing')) {
+      playLoop(current, next);
+      alex.classList.add('playing');
+    } else {
+      audio1.pause();
+      audio2.pause();
+      audio1.currentTime = 0;
+      audio2.currentTime = 0;
+      alex.classList.remove('playing');
+    }
+  });
+</script>
     </main>
   </body>
 </html>
